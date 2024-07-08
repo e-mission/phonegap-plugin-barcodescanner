@@ -772,6 +772,15 @@ parentViewController:(UIViewController*)parentViewController
 }
 
 //--------------------------------------------------------------------------
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+        
+    if (self.isBeingDismissed || self.isMovingFromParentViewController) {
+        [self cancelButtonPressed:nil];
+    }
+}
+
+//--------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated {
     // setup capture preview layer
     AVCaptureVideoPreviewLayer* previewLayer = self.processor.previewLayer;
